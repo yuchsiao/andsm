@@ -150,17 +150,17 @@ tic;
 
 format long;
 
-% e = sd(replace(e, cev, clean(double(cev), thres)/der_scale));
+% e = sdisplay(replace(e, cev, clean(double(cev), thres)/der_scale));
 e_expr = cell(size(e));
 for i = 1:n
-    tmp = sd(replace(e(i), cev, clean(value(cev), thres)/der_scale(i) ));
+    tmp = sdisplay(replace(e(i), cev, clean(value(cev), thres)/der_scale(i) ));
     e_expr{i} = tmp{1};
 end
 
-% E = sd(replace(E, cev, clean(double(cev), thres)/der_scale));
+% E = sdisplay(replace(E, cev, clean(double(cev), thres)/der_scale));
 E_expr = cell(size(E));
 for i = 1:n
-    tmp = sd(replace(E(:,i), cev, clean(value(cev), thres)/der_scale(i) )); 
+    tmp = sdisplay(replace(E(:,i), cev, clean(value(cev), thres)/der_scale(i) )); 
     for j = 1:n
         E_expr{j,i} = tmp{j,1};
     end
@@ -169,23 +169,23 @@ end
 %* Fastest version
 
 f_scaled = replace(f, cfv, clean(value(cfv), thres));
-f_expr = sd(replace(f_scaled, u, u./io_scale));
+f_expr = sdisplay(replace(f_scaled, u, u./io_scale));
 %* Scaled original
 % f_scaled = replace(f, u, u./io_scale);
-% f_expr = sd(replace(f_scaled, cfv, clean(double(cfv), thres)));
+% f_expr = sdisplay(replace(f_scaled, cfv, clean(double(cfv), thres)));
 %* Original
-% f_expr = sd(replace(f, cfv, clean(double(cfv), thres)));
+% f_expr = sdisplay(replace(f, cfv, clean(double(cfv), thres)));
 
 h_scaled = replace(h, chv, clean(value(chv), thres));
-h_expr = sd(replace(h_scaled, u, u./io_scale)./io_scale);
+h_expr = sdisplay(replace(h_scaled, u, u./io_scale)./io_scale);
 %* Scaled original
 % h_scaled = replace(h, u, u./io_scale)./io_scale;
-% h_expr = sd(replace(h_scaled, chv, clean(double(chv), thres)));
+% h_expr = sdisplay(replace(h_scaled, chv, clean(double(chv), thres)));
 %* Original
-% h_expr = sd(replace(h, chv, clean(double(chv), thres)));
+% h_expr = sdisplay(replace(h, chv, clean(double(chv), thres)));
 
-P_expr = sd(replace(P, cpv, clean(value(cpv), thres)));
-Pis_expr = sd(replace(Pis, cpv, clean(value(cpisv), thres)));
+P_expr = sdisplay(replace(P, cpv, clean(value(cpv), thres)));
+Pis_expr = sdisplay(replace(Pis, cpv, clean(value(cpisv), thres)));
 
 option.n = n;
 option.m = m;
@@ -195,24 +195,24 @@ option.deg_h = deg_h;
 
 option.f = f_expr;
 option.f_coeff = clean(value(cfv), thres);
-option.f_mono  = sd(mfv);
+option.f_mono  = sdisplay(mfv);
 
 option.e = e_expr;
 option.E = E_expr;
 option.e_coeff = clean(value(cev), thres);
-option.e_mono  = sd(mev);
+option.e_mono  = sdisplay(mev);
 
 option.h = h_expr;
 option.h_coeff = clean(value(chv), thres);
-option.h_mono  = sd(mhv);
+option.h_mono  = sdisplay(mhv);
 
 option.P = P_expr;
 option.P_coeff = clean(value(cpv), thres);
-option.P_mono  = sd(mpv);
+option.P_mono  = sdisplay(mpv);
 
 option.Pis = Pis_expr;
 option.Pis_coeff = clean(value(cpisv), thres);
-option.Pis_mono  = sd(mpisv);
+option.Pis_mono  = sdisplay(mpisv);
 
 option.sol.info = solinfo;
 

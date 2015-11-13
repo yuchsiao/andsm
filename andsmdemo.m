@@ -1,32 +1,46 @@
 %ANDSM Brief tutorial and examples.
-%
 
+
+%% Prepare training data
+
+andsm_demo_prepare_drc2_training_data;
+training_data = data;
+plot_dataset(training_data, 1:6);
+plot_dataset(training_data, 7:12);
+
+%% Prepare validation data
+
+andsm_demo_prepare_drc2_validation_data;
+validation_data = data;
+plot_dataset(validation_data, 13:16);
 
 %% Create an Andsm object
-andsm = Andsm(trainingData, validationData);
+
+andsm = Andsm(training_data, validation_data);
 
 %% Traing models for a set of kappas and lambdas
-degE = 1;
-degF = 1;
-degH = 1;
-degV = 2;
 
-kappas = [1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2];
-lambdas = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
+deg_e = 1;
+deg_f = 1;
+deg_h = 1;
+deg_v = 2;
 
-andsm.train([degE, degF, degH, degV], kappas, lambdas)
+kappa = [1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2];
+lambda = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
+
+andsm.train([deg_e, deg_f, deg_h, deg_v], kappa, lambda);
 
 
 %% Traing models for a set of kappas and lambdas
-degE = 3;
-degF = 3;
-degH = 3;
-degV = 4;
+deg_e = 3;
+deg_f = 3;
+deg_h = 3;
+deg_v = 4;
 
-kappas = [1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2];
-lambdas = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
+kappa = [1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2];
+lambda = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
 
-andsm.train([degE, degF, degH, degV], kappas, lambdas);
+andsm.train([deg_e, deg_f, deg_h, deg_v], kappa, lambda);
 
 
 %% Retrieve the best model
