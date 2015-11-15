@@ -61,15 +61,12 @@ self.deg = deg;
 [~, self.jBestModel] = min(minErrPerColumn);
 self.iBestModel = minErrRowIndex(self.jBestModel);
 
-[~, errL2, errLinf, index] = self.getBestModel();
-
-errL2Std = self.err('l2', 'std');
-errLinfStd = self.err('linf', 'std');
+[~, err, index] = self.getBestModel();
 
 cprintf('*key', 'ACCURACY OF BEST MODEL ');
 cprintf('key', '(%d,%d)\n', index(1), index(2));
-cprintf('key', '%c : %g\n', 954, self.kappa(index(1)));
-cprintf('key', '%c : %g\n', 955, self.lambda(index(2)));
-cprintf('key', 'L2: %4.2f%% (%4.2f%%)\n', errL2 * 100, errL2Std(index(1), index(2)) * 100);
-cprintf('key', 'L%c: %4.2f%% (%4.2f%%)\n', 8734, errLinf * 100, errLinfStd(index(1), index(2)) * 100);
+cprintf('key', '%c : %g\n', 954, self.kappa(index(1)));  % kappa
+cprintf('key', '%c : %g\n', 955, self.lambda(index(2))); % lambda
+cprintf('key', 'L2: %4.2f%% (%4.2f%%)\n', err.l2Avg * 100, err.l2Std * 100);
+cprintf('key', 'L%c: %4.2f%% (%4.2f%%)\n', 8734, err.linfAvg * 100, err.linfStd * 100);
 
