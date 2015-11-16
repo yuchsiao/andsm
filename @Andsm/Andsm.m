@@ -1,13 +1,13 @@
 classdef Andsm < handle
     properties
-        trainingData
-        validationData
+        training_data
+        validation_data
         
         model
     end
     properties (Access = private)
-        iBestModel
-        jBestModel
+        i_best_model
+        j_best_model
         
         n
         m
@@ -18,30 +18,30 @@ classdef Andsm < handle
         
         prev
         
-        errL2
-        errLinf
+        err_l2
+        err_linf
     end
     methods
-        function self = Andsm(trainingData, validationData)
+        function self = Andsm(training_data, validation_data)
             % Init values
 
             % Validate training and validation data
-            validateData_(trainingData, 'training');
+            validateData_(training_data, 'training');
             
-            if ~isempty(validationData)
-                validateData_(validationData, 'validation');
+            if ~isempty(validation_data)
+                validateData_(validation_data, 'validation');
             end
 
             % Store training and validation data
-            self.trainingData = trainingData;
-            self.validationData = validationData;
+            self.training_data = training_data;
+            self.validation_data = validation_data;
 
-            self.m = size(trainingData.u{1}, 2);
-            self.n = size(trainingData.x{1}, 2); 
+            self.m = size(training_data.u{1}, 2);
+            self.n = size(training_data.x{1}, 2); 
             
         end
         
-        function val = isSolved(self)
+        function val = is_solved(self)
             if isempty(self.model)
                 val = false;
             else
@@ -49,39 +49,39 @@ classdef Andsm < handle
             end
         end
         
-        function prev = getPreviousSolverState(self)
+        function prev = get_solver_state(self)
             prev = self.prev;
         end
-        function prevKappa = getPreviousKappa(self)
-            prevKappa = self.kappa;
+        function kappa = get_kappa(self)
+            kappa = self.kappa;
         end
-        function prevLambda = getPreviousLambda(self)
-            prevLambda = self.lambda;
+        function lambda = get_lambda(self)
+            lambda = self.lambda;
         end
                 
         % Model performance metrics
         val = err(self, errType, stats)
         
-        val = errL2Avg(self)
-        val = errL2Std(self)
+        val = err_l2_avg(self)
+        val = err_l2_std(self)
         
-        val = errLinfAvg(self)
-        val = errLinfStd(self)
+        val = err_linf_avg(self)
+        val = err_linf_std(self)
         
         % Best model (with min avg L2 err)
-        [bestModel, errL2BestModel, errLinfBestModel, indexBestModel] ...
-            = getBestModel(self)
+        [best_model, err_l2_best_model, err_linf_best_model, index_best_model] ...
+            = get_best_model(self)
         
         % Model training
-        train(self, deg, kappa, lambda, isIncrementallyStable, solverConfig)
+        train(self, deg, kappa, lambda, solver_config)
         
         % Export model
-        export(self, filename, modelType, modelInput, option, model)
+        export(self, filename, model_type, model_input, option, model)
     end
     
     methods (Static)
         [tt, uu, xx, yy] = sim(model, time, u, x0, tol)
-        [errL2, errLinf] = computeError(t, x, tRef, xRef)
+        [errL2, errLinf] = compute_error(t, x, t_ref, x_ref)
     end
     
 end
