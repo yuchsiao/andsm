@@ -3,7 +3,7 @@ Automated Nonlinear Dynamic System Modeling
 
 ANDSM 
 
-<img src="fig/system.png" alt="system" style="height: 120px;"/>
+<img src="fig/system.png" alt="system" style="height: 60px;"/>
 
 ## Dependencies
 
