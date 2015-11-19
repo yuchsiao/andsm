@@ -3,7 +3,7 @@ Automated Nonlinear Dynamic System Modeling
 
 ANDSM 
 
-![system](fig/system.png)
+![system](fig/system.png =120)
 
 ## Dependencies
 
