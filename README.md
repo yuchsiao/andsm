@@ -1,50 +1,28 @@
 # ANDSM 
 Automated Nonlinear Dynamic System Modeling
 
-ANDSM 
+ANDSM automatically generates nonlinear dynamical models from input-state-output training data
+into a state-space format
 
 <img src="fig/system.png" alt="system" align="middle" height="100"/>
 
-## Dependencies
+The generated models are guaranteed passive and optionally incrementally stable.
+The passivity property ensures that the models do not generate numerical energy,
+hence, suited for modeling nonlinear circuit networks (including active and passive), 
+arterial (cardiovascular) networks, and potentially all systems that can be 
+represented as circuits or bond graphs.
 
-ANDSM utilizes YALMIP to formulate Sums-of-Squares (SOS) optimization problems into Semidefinite programming (SDP) problems,
-which are then resolved by MOSEK.
+## Algorithm 
 
-### MOSEK
-
-#### Tested Version
-
-Version 7.1 (Revision 39), tested with Matlab R2014b and R2015b
-
-#### Installation
-
-Please refer to the instruction [here](http://docs.mosek.com/7.0/toolbox/Installation.html).
-For academic usage, a one-year license can be freely requested [here](https://www.mosek.com/resources/academic-license).
-The installation on Mac, for example, is simply putting the downloaded mosek under user folder `~/`
-and then putting the license file under `~/mosek/`.
-Matlab can access MOSEK when the toolbox path is added
-```matlab
-addpath '~/mosek/7/toolbox/r2013a'
-```
-
-To check if Matlab has the correct access, type in Matlab
-```matlab
->> mosekopt
-```
-
-A similar message as the following should be displayed 
-```matlab
-MOSEK Version 7.1.0.39 (Build date: 2015-10-6 11:19:28)
-Copyright (c) 1998-2015 MOSEK ApS, Denmark. WWW: http://mosek.com
-Platform: MACOSX/64-X86
-
-
-For help type: help mosekopt.
-```
-
-### YALMIP
-
-#### Installation
-
+The underlying algorithm is a convex optimization program constrained by specially 
+forged sum-of-squares (of-polynomials) constraints. 
+These constraints theoretically guarantee that all feasible solutions within
+the set preserve desired system properties, such as passivity and incremental stability.
+Solving such an optimization problem essentially looks for a model whose
+parameters minimize against the training data,
+while at the same time every candidate models along the search path
+possess the system properties of interest.
+ 
+Details and theories can be found [here]()
 
 ##  
