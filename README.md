@@ -36,5 +36,5 @@ The instructions of installing YALMIP, MOSEK, and ANDSM are described [here](INS
 
 
 ## Usage
-
+API
 Please see [demo](andsm_demo.m) for more detailed examples.
