@@ -36,5 +36,52 @@ The instructions of installing YALMIP, MOSEK, and ANDSM are described [here](INS
 
 
 ## Usage
-API
-Please see [demo](andsm_demo.m) for more detailed examples.
+
+The basic logic of using ANDSM is 
+
+1. Prepare the training and the validation data sets
+
+2. Create a ANDSM object with the training and the validation sets 
+```matlab
+andsm = Andsm(training_data, validation_data);
+```
+
+3. Train a set of models using different parameters
+```matlab
+deg_e = 1;
+deg_f = 1;
+deg_h = 1;
+deg_v = 2;
+
+kappa = [1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2];
+lambda = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
+
+andsm.train([deg_e, deg_f, deg_h, deg_v], kappa, lambda);
+```
+
+4. Use the best one with the lowest errors
+```matlab
+[model, err, ind] = andsm.get_best_model
+```
+
+5. Visulize the model performance by simulating it
+```matlab
+t = validation_data.t{1};
+u = validation_data.u{1};
+y = validation_data.y{1};
+x0 = [0;0;0];
+tol = 'regular';
+
+[tt, uu, xx, yy] = Andsm.sim(model, t, u, x0, tol);
+```
+
+6. When satisfied with the accuracy, export the model in SimScape (Simulink) or Verilog-A formats
+```matlab
+andsm.export('+drc2/drc2_model', 'simscape', 'i', option);
+andsm.export('va/drc2_model_v', 'veriloga', 'v', option);
+```
+
+7. Now, it is ready for further system-level integration of the generated models.
+
+
+For running demo examples, please see [demo](andsm_demo.m) for more detailed examples.
