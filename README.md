@@ -88,4 +88,4 @@ The basic logic of using ANDSM is
 
 7. Now, the generated model is ready for system-level integrations by interconnecting with other models.
 
-**For running demo examples, please see [demo](andsm_demo.m) for more detailed examples.**
+**For runnable demos, please refer the [file](andsm_demo.m) for more detailed examples.**
