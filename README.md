@@ -43,13 +43,13 @@ The basic logic of using ANDSM is
 
 2. Create a ANDSM object with the training and the validation sets 
 
- ```matlab
+ ```c
  andsm = Andsm(training_data, validation_data);
  ```
 
 3. Train a set of models using different parameters
  
- ```matlab
+ ```c
  deg_e = 1;
  deg_f = 1;
  deg_h = 1;
@@ -69,7 +69,7 @@ The basic logic of using ANDSM is
 
 5. Visulize the model performance by simulating it
 
- ```matlab
+ ```c
  t = validation_data.t{1};
  u = validation_data.u{1};
  y = validation_data.y{1};
@@ -81,11 +81,11 @@ The basic logic of using ANDSM is
 
 6. When satisfied with the accuracy, export the model in SimScape (Simulink) or Verilog-A formats
  
- ```matlab
+ ```c
  andsm.export('+drc2/drc2_model', 'simscape', 'i', option);
  andsm.export('va/drc2_model_v', 'veriloga', 'v', option);
  ```
 
-7. Now, it is ready for further system-level integration of the generated models.
+7. Now, the generated model is ready for system-level integrations by interconnecting with other models.
 
-For running demo examples, please see [demo](andsm_demo.m) for more detailed examples.
+**For running demo examples, please see [demo](andsm_demo.m) for more detailed examples.**
