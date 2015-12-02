@@ -20,28 +20,6 @@ end
 str = strcat('@(x,u) [', str, ']');
 f = str2func(str);
 ftx = @(t,x) f(x, interp1(time, input, t, 'spline'));
-% odeoption
-
-%%% higher accuracy
-% rel_tol = 1e-4;
-% abs_tol = 1e-8;
-
-%%% regular accuracy
-% rel_tol = 1e-3;
-% abs_tol = 1e-6;
-
-%%% low accuracy
-% rel_tol = 1e-2;
-% abs_tol = 1e-4;
-
-%%% very low accuracy
-% rel_tol = 1e-1;
-% abs_tol = 1e-2;
-
-% max_step = tend/100;
-
-% option.RelTol = rel_tol;
-% option.AbsTol = abs_tol;
 
 % generate E function
 str = '';

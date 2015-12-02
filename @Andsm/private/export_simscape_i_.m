@@ -1,12 +1,12 @@
-function exportSimscapeI_(model, pathstr, filename, label, option)
-% exportSimscapeI_ convert model into a Simscape model
+function export_simscape_i_(model, pathstr, filename, label, option)
+% export_simscape_i_ export model into a Simscape model
 % 
 % Example: 
 % 
-% exportSimscapeI_(model, '~/workspace', 'filename', 'modelname', option)
+% export_simscape_i_(model, '~/workspace', 'filename', 'modelname', option)
 %
 % option may contain
-% option.pinPosition    a string with length equal to number of ports.
+% option.pin_position   a string with length equal to number of ports.
 %                       e.g. 'llr' means pin1 on left, pin2 on left,
 %                       and pin3 on right. The reference pin is always 
 %                       on the same side of pin1 due to the restriction

@@ -1,12 +1,12 @@
-function export(self, filename, modelType, modelInput, option, model)
+function export(self, filename, model_type, model_input, option, model)
 
 if nargin <= 5  % no model
-    if ~self.isSolved
-        errStruct.message = 'No model and models not trained yet';
-        errStruct.identifier = 'Andsi:export:noSolution';
-        error(errStruct);
+    if ~self.is_solved
+        err_struct.message = 'No model and models not trained yet';
+        err_struct.identifier = 'Andsi:export:no_solution';
+        error(err_struct);
     end
-    model = self.model{self.iBestModel, self.jBestModel};
+    model = self.model{self.i_best_model, self.j_best_model};
 end
 
 if nargin <= 4  % no option
@@ -15,14 +15,14 @@ end
 
 [pathstr,filename,~] = fileparts(filename);
 
-switch lower(modelType)
+switch lower(model_type)
     case {'simulink', 'simscape', 'ssc'}
         % Prepare pinPosition
-        if isfield(option, 'pinPosition')
+        if isfield(option, 'pin_position')
             if lengh(option.pinPosition) ~= model.m
-                errStruct.message = 'Length of option.pinPostion must be number of ports';
-                errStruct.identifier = 'Andsi:export:pinNumberError';
-                error(errStruct);    
+                err_struct.message = 'Length of option.pinPostion must be number of ports';
+                err_struct.identifier = 'Andsi:export:pin_number_error';
+                error(err_struct);    
             end
         else
             option.pinPosition = repmat('l',1,model.m);
@@ -34,31 +34,31 @@ switch lower(modelType)
             label = filename;
         end
 
-        switch lower(modelInput)
+        switch lower(model_input)
             case {'i', 'current'}
-                exportSimscapeI_(model, pathstr, filename, label, option);               
+                export_simscape_i_(model, pathstr, filename, label, option);               
             case {'v', 'voltage'}
-                exportSimscapeV_(model, pathstr, filename, label, option);                               
+                export_simscape_v_(model, pathstr, filename, label, option);                               
             otherwise
-                errStruct.message = 'modelInput is either ''i'' for current (through variable) or ''v'' for voltage (across variable)';
-                errStruct.identifier = 'Andsi:export:modelInputError';
-                error(errStruct);    
+                err_struct.message = 'model_input is either ''i'' for current (through variable) or ''v'' for voltage (across variable)';
+                err_struct.identifier = 'Andsi:export:model_input_error';
+                error(err_struct);    
         end
         
     case {'veriloga', 'va'}
-        switch lower(modelInput)
+        switch lower(model_input)
             case {'i', 'current'}
-                exportVerilogaI_(model, pathstr, filename, option);
+                export_veriloga_i_(model, pathstr, filename, option);
             case {'v', 'voltage'}
-                
+                export_veriloga_v_(model, pathstr, filename, option);
             otherwise
-                errStruct.message = 'modelInput is either ''i'' for current (through variable) or ''v'' for voltage (across variable)';
-                errStruct.identifier = 'Andsi:export:modelInputError';
-                error(errStruct);    
+                err_struct.message = 'model_input is either ''i'' for current (through variable) or ''v'' for voltage (across variable)';
+                err_struct.identifier = 'Andsi:export:model_input_error';
+                error(err_struct);    
         end
         
     otherwise
-        errStruct.message = 'modelType is either ''ssc'' for Simulink or ''va'' for Verilog A';
-        errStruct.identifier = 'Andsi:export:modelTypeError';
-        error(errStruct);    
+        err_struct.message = 'model_type is either ''ssc'' for Simulink or ''va'' for Verilog A';
+        err_struct.identifier = 'Andsi:export:model_type_error';
+        error(err_struct);    
 end

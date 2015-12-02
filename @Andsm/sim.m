@@ -22,18 +22,18 @@ if nargin >= 5
                 opt.RelTol = 1e-1;
                 opt.AbsTol = 1e-2;
             otherwise
-                errStruct.message = 'Type of tolerance is ''regular'', (''high'', ''stringent'', ''conservative''), (''low'', ''liberal''), ''very low'', or user defined structure with absTol and relTol fields.';
-                errStruct.identifier = 'Andsi:sim:wrongToleranceSpecifier';
-                error(errStruct);
+                err_struct.message = 'Type of tolerance is ''regular'', (''high'', ''stringent'', ''conservative''), (''low'', ''liberal''), ''very low'', or user defined structure with absTol and relTol fields.';
+                err_struct.identifier = 'Andsi:sim:wrong_tolerance_specifier';
+                error(err_struct);
         end
     else
-        if ~(isfield(tol, 'absTol') && isfield(tol, 'relTol'))
-            errStruct.message = 'Argument ''tol'' must have fields ''absTol'' and ''relTol''.';
-            errStruct.identifier = 'Andsi:sim:wrongToleranceFormat';
-            error(errStruct);
+        if ~(isfield(tol, 'abs_tol') && isfield(tol, 'rel_tol'))
+            err_struct.message = 'Argument ''tol'' must have fields ''abs_tol'' and ''rel_tol''.';
+            err_struct.identifier = 'Andsi:sim:wrong_tolerance_format';
+            error(err_struct);
         end
-        opt.RelTol = tol.relTol;
-        opt.AbsTol = tol.absTol;
+        opt.RelTol = tol.rel_tol;
+        opt.AbsTol = tol.abs_tol;
     end
 end
 
