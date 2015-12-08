@@ -19,7 +19,7 @@ switch lower(model_type)
     case {'simulink', 'simscape', 'ssc'}
         % Prepare pinPosition
         if isfield(option, 'pin_position')
-            if lengh(option.pinPosition) ~= model.m
+            if length(option.pin_position) ~= model.m
                 err_struct.message = 'Length of option.pinPostion must be number of ports';
                 err_struct.identifier = 'Andsi:export:pin_number_error';
                 error(err_struct);    

@@ -13,7 +13,7 @@ function export_simscape_i_(model, pathstr, filename, label, option)
 %                       of Simscape (same side or opposite side).
 
 
-port_pos = option.pinPosition;
+port_pos = option.pin_position;
 
 % header block
 fullfilename = fullfile(pathstr, filename);

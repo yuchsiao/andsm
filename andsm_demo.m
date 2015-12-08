@@ -17,7 +17,8 @@ plot_dataset(validation_data, 13:16);
 
 andsm = Andsm(training_data, validation_data);
 
-%% Traing models for a set of kappas and lambdas
+%% Training models for a set of kappas and lambdas 
+%  low-degree, quick training but not accurate
 
 deg_e = 1;
 deg_f = 1;
@@ -30,7 +31,9 @@ lambda = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1];
 andsm.train([deg_e, deg_f, deg_h, deg_v], kappa, lambda);
 
 
-%% Traing models for a set of kappas and lambdas
+%% Training models for a set of kappas and lambdas
+%  higher-degree training for accurate models
+
 deg_e = 3;
 deg_f = 3;
 deg_h = 3;

@@ -1,5 +1,15 @@
 %% Validation data
 
+% Environment setting
+RS = 0;
+
+% Init
+data.t = {};
+data.u = {};
+data.x = {};
+data.y = {};
+data.dx = {};
+
 % Set1,2,3 environments
 RL = 3;
 n_cycle = 5;

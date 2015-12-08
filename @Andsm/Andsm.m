@@ -26,10 +26,10 @@ classdef Andsm < handle
             % Init values
 
             % Validate training and validation data
-            validateData_(training_data, 'training');
+            validate_data_(training_data, 'training');
             
             if ~isempty(validation_data)
-                validateData_(validation_data, 'validation');
+                validate_data_(validation_data, 'validation');
             end
 
             % Store training and validation data
