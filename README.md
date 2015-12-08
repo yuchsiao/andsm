@@ -24,7 +24,7 @@ parameters minimize against the training data,
 while at the same time every candidate models along the search path
 possess the system properties of interest.
  
-Details and theories can be referred to [here](http://feature.space/doc/hsiao_thesis.pdf).
+Details and theories can be referred to [here](https://github.com/yuchsiao/doc/blob/master/thesis_hsiao.pdf).
 
 
 ## Installation and Dependencies
