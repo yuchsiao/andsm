@@ -1,5 +1,5 @@
 # ANDSM 
-Automated Nonlinear Dynamic System Modeling
+Automated Nonlinear Dynamical Systems Modeling
 
 ANDSM automatically generates nonlinear dynamical models from input-state-output training data
 into a state-space format
