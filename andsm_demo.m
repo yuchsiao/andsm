@@ -57,9 +57,9 @@ andsm.model{ind}
 
 %% Simulate a model and plot the result
 
-t = validation_data.t{1};
-u = validation_data.u{1};
-y = validation_data.y{1};
+t = validation_data.t{3};
+u = validation_data.u{3};
+y = validation_data.y{3};
 x0 = [0;0;0];
 tol = 'regular';
 % Tolerance (tol) can be a string or a structure:
